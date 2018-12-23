@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="12/23/2018 4:41:45 PM"
@@ -6,14 +6,99 @@
   DTS:CreatorComputerName="DESKTOP-R3VH6HI"
   DTS:CreatorName="DESKTOP-R3VH6HI\piotr"
   DTS:DTSID="{4CC86A19-670C-4534-9148-7794FFF7F65C}"
+  DTS:EnableConfig="True"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionGUID="{29F736E3-17AE-4245-AEA8-B846E5F9B974}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{50262F6B-B17B-4008-89CD-6B7706108BF7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
-  <DTS:Executables />
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.master]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{83964716-4EDF-4336-B48E-B522CAB4ED32}"
+      DTS:ObjectName="localhost.master">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=master;Integrated Security=True;Application Name=SSIS-Package-{83964716-4EDF-4336-B48E-B522CAB4ED32}localhost.master1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\Users\piotr\Desktop\ERASMUS_ISEP_SEM2\ARPAD\Projects\Practical\MoreOrderDataMart\MoreOrderDataMart\MoreOrderDataMartConfig.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{F930A937-8948-43A4-8565-81708E009331}"
+      DTS:ObjectName="MoreOrderDataMartConfig" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A3CEC89C-DEA1-4384-A1D4-CFE7E8ADA5B0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackagePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\piotr\Desktop\ERASMUS_ISEP_SEM2\ARPAD\Projects\Practical\MoreOrderDataMart</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CFA24D93-F2C2-4DA7-B9E5-8238888A4A36}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StagingAreaDBName">
+      <DTS:VariableValue
+        DTS:DataType="8">MoreOrderStagingArea</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create MoreOrder Staging Area DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B806A252-0FDC-4407-B7E8-86B84093EEEA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="1033"
+      DTS:ObjectName="Create MoreOrder Staging Area DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{83964716-4EDF-4336-B48E-B522CAB4ED32}"
+          SQLTask:SqlStatementSource="EXEC('IF NOT EXISTS(SELECT name FROM sys.databases WHERE name = ''' + @DBName + ''')&#xA;&#x9;CREATE DATABASE ' + @DBName)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="DBName"
+            SQLTask:DtsVariableName="User::StagingAreaDBName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="16"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="243.2,41.6"
+          Id="Package\Create MoreOrder Staging Area DB"
+          TopLeft="84.0000014305115,31.8117651520303" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
