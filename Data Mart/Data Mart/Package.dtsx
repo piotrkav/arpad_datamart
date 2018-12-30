@@ -12,8 +12,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{AA90EB16-63A6-47AD-95B5-6C1527D60A05}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{82198742-606B-41F3-9F5A-2529B96BAD6F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -67,6 +67,26 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=localhost;Initial Catalog=master;Integrated Security=True;Application Name=SSIS-Package-{EF4BCA05-1E1D-4311-BBF4-452F5AB57619}localhost.master1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.MoreOrders]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{96A00ABB-C44B-413B-83DF-7387C6314F17}"
+      DTS:ObjectName="localhost.MoreOrders">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=MoreOrders;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5AFCCC42-4DA5-40E9-9298-FAF99517E9C8}"
+      DTS:ObjectName="localhost.MoreOrdersStagingArea">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=MoreOrdersStagingArea;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -309,6 +329,575 @@
           DTS:VariableName="User::StagingAreaScriptFilename" />
       </DTS:ForEachVariableMappings>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load MoreOrdersStagingAreaTables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{FBEBB98F-25DC-461C-8812-64582658EBD1}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load MoreOrdersStagingAreaTables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables\Load Customer"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{B315DC7B-176A-4C4D-952D-916AA88035EF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Customer"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MoreOrders Customer With Country"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Customers.CustomerID, Customers.CustomerType, Customers.Discount, Customers.Gender, Customers.GeographicRegion, Customers.[Language], Customers.VipCustomer, Countries.Name, Countries.Code, Countries.EuroZone, 
+                  Customers.DateOfBirth
+FROM     Countries INNER JOIN
+                  Customers ON Countries.CountryID = Customers.CountryID</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrders]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrders]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                          name="CustomerID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[CustomerType]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[CustomerType]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[CustomerType]"
+                          name="CustomerType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Discount]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Discount]"
+                          name="Discount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Gender]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          length="1"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Gender]"
+                          name="Gender"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[GeographicRegion]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[GeographicRegion]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[GeographicRegion]"
+                          name="GeographicRegion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Language]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Language]"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Language]"
+                          name="Language"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[VipCustomer]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[VipCustomer]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[VipCustomer]"
+                          name="VipCustomer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Code]"
+                          name="Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[EuroZone]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[EuroZone]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[EuroZone]"
+                          name="EuroZone"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[DateOfBirth]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[DateOfBirth]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[DateOfBirth]"
+                          name="DateOfBirth"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                          dataType="i4"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[CustomerType]"
+                          dataType="i4"
+                          name="CustomerType" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                          dataType="i4"
+                          name="Discount" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[GeographicRegion]"
+                          dataType="i4"
+                          name="GeographicRegion" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Language]"
+                          dataType="wstr"
+                          length="2"
+                          name="Language" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[VipCustomer]"
+                          dataType="bool"
+                          name="VipCustomer" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="2"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[EuroZone]"
+                          dataType="bool"
+                          name="EuroZone" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].ExternalColumns[DateOfBirth]"
+                          dataType="wstr"
+                          length="255"
+                          name="DateOfBirth" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                          name="CustomerID" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[CustomerType]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[CustomerType]"
+                          name="CustomerType" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                          name="Discount" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          name="Gender" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[GeographicRegion]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[GeographicRegion]"
+                          name="GeographicRegion" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Language]"
+                          dataType="wstr"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Language]"
+                          name="Language" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[VipCustomer]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[VipCustomer]"
+                          name="VipCustomer" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          dataType="wstr"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          name="Code" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[EuroZone]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[EuroZone]"
+                          name="EuroZone" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[DateOfBirth]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[DateOfBirth]"
+                          name="DateOfBirth" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Customer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                          cachedDataType="i4"
+                          cachedName="CustomerID"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Discount]"
+                          cachedDataType="i4"
+                          cachedName="Discount"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Discount]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GeographicRegion]"
+                          cachedDataType="i4"
+                          cachedName="GeographicRegion"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographicRegion]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[GeographicRegion]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Language]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="Language"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Language]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Language]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VipCustomer]"
+                          cachedDataType="bool"
+                          cachedName="VipCustomer"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VipCustomer]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[VipCustomer]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EuroZone]"
+                          cachedDataType="bool"
+                          cachedName="EuroZone"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EuroZone]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[EuroZone]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateOfBirth]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="DateOfBirth"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBirthDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[DateOfBirth]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerType]"
+                          cachedDataType="i4"
+                          cachedName="CustomerType"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerTypeDescription]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[CustomerType]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Code]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="Code"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output].Columns[Code]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          codePage="1250"
+                          dataType="str"
+                          length="11"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerTypeDescription]"
+                          dataType="wstr"
+                          length="50"
+                          name="CustomerTypeDescription" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                          dataType="ui1"
+                          name="Discount" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBirthDate]"
+                          dataType="dbTimeStamp"
+                          name="DateOfBirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographicRegion]"
+                          dataType="wstr"
+                          length="50"
+                          name="GeographicRegion" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Language]"
+                          dataType="wstr"
+                          length="50"
+                          name="Language" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VipCustomer]"
+                          codePage="1250"
+                          dataType="str"
+                          length="1"
+                          name="VipCustomer" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          dataType="wstr"
+                          length="50"
+                          name="Country" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                          dataType="wstr"
+                          length="2"
+                          name="CountryCode" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EuroZone]"
+                          dataType="bool"
+                          name="EuroZone" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Customer.Paths[OLE DB Source Output]"
+                  endId="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -339,7 +928,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="206.4,41.6"
           Id="Package\Create Data Mart Database"
@@ -414,8 +1003,90 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer"
+          TopLeft="7.11688385115926,19.9443873198763" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="218.4,112.8"
+          Size="218.4,156"
+          Id="Package\Load MoreOrdersStagingAreaTables"
+          TopLeft="35.8441564545783,255.828880195462" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="246.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country"
+          TopLeft="5.49999999999999,5.5" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination"
+          TopLeft="110.857144745029,122.964707606887" />
+        <EdgeLayout
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer.Paths[OLE DB Source Output]"
+          TopLeft="128.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.3571447450288,75.8647076068865"
+              Start="0,0"
+              End="67.3571447450288,68.3647076068865">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.9323538034433" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.9323538034433"
+                    Point2="0,37.9323538034433"
+                    Point3="4,37.9323538034433" />
+                  <mssgle:LineSegment
+                    End="63.3571447450288,37.9323538034433" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.3571447450288,37.9323538034433"
+                    Point2="67.3571447450288,37.9323538034433"
+                    Point3="67.3571447450288,41.9323538034433" />
+                  <mssgle:LineSegment
+                    End="67.3571447450288,68.3647076068865" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
