@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{25006AA6-BC2E-40EF-9C70-18ECFAA21698}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{C8F73D5F-BB48-469B-9615-D1E8468357B6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -59,6 +59,16 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.master1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{EF4BCA05-1E1D-4311-BBF4-452F5AB57619}"
+      DTS:ObjectName="localhost.master1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=master;Integrated Security=True;Application Name=SSIS-Package-{EF4BCA05-1E1D-4311-BBF4-452F5AB57619}localhost.master1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.StagingArea]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{9909AFE1-52C2-4394-A781-3AF698A50EDD}"
@@ -72,6 +82,15 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{22C3BD0F-5A15-45B7-8625-5D355DA7395F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DataMartDBName">
+      <DTS:VariableValue
+        DTS:DataType="8">MoreOrdersDataMart</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{AD1B6BDE-305B-4347-95B9-5E419679757F}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -79,6 +98,15 @@
       <DTS:VariableValue
         DTS:DataType="8"
         xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{68C99E16-7702-48A0-86B5-644D8393F8F3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StagingAreaDBName">
+      <DTS:VariableValue
+        DTS:DataType="8">MoreOrdersStagingArea</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -105,8 +133,15 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{03D73B8D-EC9C-4621-849A-F7167283CBB5}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS (Select * from sys.databases WHERE name = 'MoreOrdersDataMart')&#xA; CREATE DATABASE MoreOrdersDataMart" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{EF4BCA05-1E1D-4311-BBF4-452F5AB57619}"
+          SQLTask:SqlStatementSource="EXEC('IF NOT EXISTS(SELECT name FROM sys.databases WHERE name = ''' + @DBName + ''')&#xA;&#x9;CREATE DATABASE ' + @DBName)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="DBName"
+            SQLTask:DtsVariableName="User::DataMartDBName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="16"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -122,8 +157,15 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{03D73B8D-EC9C-4621-849A-F7167283CBB5}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS (Select * from sys.databases WHERE name = 'MoreOrdersStagingArea')&#xA;&#x9;CREATE DATABASE MoreOrdersStagingArea" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{EF4BCA05-1E1D-4311-BBF4-452F5AB57619}"
+          SQLTask:SqlStatementSource="EXEC('IF NOT EXISTS(SELECT name FROM sys.databases WHERE name = ''' + @DBName + ''')&#xA;&#x9;CREATE DATABASE ' + @DBName)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="DBName"
+            SQLTask:DtsVariableName="User::StagingAreaDBName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="16"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
