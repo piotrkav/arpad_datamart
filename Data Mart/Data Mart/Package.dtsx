@@ -12,8 +12,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{D9F690F6-6C6A-460D-B965-6D9FEAB750FB}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{4600C7ED-137B-4284-A34A-41952B1FC1B3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -728,16 +728,6 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.DataMart]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{7AED6B0A-F1D6-490F-8FFB-CC707FAD4C50}"
-      DTS:ObjectName="LocalHost.DataMart">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=MoreOrdersDataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.master]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{03D73B8D-EC9C-4621-849A-F7167283CBB5}"
@@ -768,6 +758,16 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.MoreOrdersDataMart]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4A83BD87-0BE0-4CEF-83D0-7072DCDCB40C}"
+      DTS:ObjectName="localhost.MoreOrdersDataMart">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=MoreOrdersDataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{5AFCCC42-4DA5-40E9-9298-FAF99517E9C8}"
@@ -775,16 +775,6 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=localhost;Initial Catalog=MoreOrdersStagingArea;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.StagingArea]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{9909AFE1-52C2-4394-A781-3AF698A50EDD}"
-      DTS:ObjectName="LocalHost.StagingArea">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=MoreOrdersStagingArea;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -954,7 +944,7 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{7AED6B0A-F1D6-490F-8FFB-CC707FAD4C50}"
+              SQLTask:Connection="{4A83BD87-0BE0-4CEF-83D0-7072DCDCB40C}"
               SQLTask:SqlStmtSourceType="FileConnection"
               SQLTask:SqlStatementSource="Create Data Mart Tables" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
@@ -963,8 +953,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{650BFD31-912A-4045-844D-C135CFA2B4F8}"
-          DTS:ObjectName="{650BFD31-912A-4045-844D-C135CFA2B4F8}"
+          DTS:DTSID="{83092AC5-6DC7-4769-91D2-C34519EAFC76}"
+          DTS:ObjectName="{83092AC5-6DC7-4769-91D2-C34519EAFC76}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::DataMartScriptFilename" />
       </DTS:ForEachVariableMappings>
@@ -1011,7 +1001,7 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{9909AFE1-52C2-4394-A781-3AF698A50EDD}"
+              SQLTask:Connection="{5AFCCC42-4DA5-40E9-9298-FAF99517E9C8}"
               SQLTask:SqlStmtSourceType="FileConnection"
               SQLTask:SqlStatementSource="Create Staging Tables" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
@@ -1670,8 +1660,8 @@ FROM     Countries INNER JOIN
                   <connections>
                     <connection
                       refId="Package\Load Temporal Dimensions\DimDate Empty?\OLE DB Source.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[LocalHost.DataMart]"
-                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DataMart]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrdersDataMart]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrdersDataMart]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -4212,8 +4202,8 @@ FROM     Countries INNER JOIN
                   <connections>
                     <connection
                       refId="Package\Load Temporal Dimensions\DimDate Load\DimDate.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[LocalHost.DataMart]"
-                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DataMart]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrdersDataMart]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrdersDataMart]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -4543,21 +4533,21 @@ FROM     Countries INNER JOIN
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43.3882349938258"
+              EndConnector="0,43.3882349938261"
               Start="0,0"
-              End="0,35.8882349938258">
+              End="0,35.8882349938261">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.8882349938258" />
+                    End="0,35.8882349938261" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,9.94411749691291,16,16"
+              BoundingBox="-8,9.94411749691304,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4675,7 +4665,7 @@ FROM     Countries INNER JOIN
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="246.4,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country"
@@ -4715,7 +4705,9 @@ FROM     Countries INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4748,13 +4740,13 @@ FROM     Countries INNER JOIN
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Empty?\OLE DB Source"
-          TopLeft="192.000003269741,39.1529417255758" />
-        <NodeLayout
           Size="129.6,41.6"
           Id="Package\Load Temporal Dimensions\DimDate Empty?\Row Count"
           TopLeft="204.000003474099,144.988237327523" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Empty?\OLE DB Source"
+          TopLeft="192.000003269741,39.1529417255758" />
         <EdgeLayout
           Id="Package\Load Temporal Dimensions\DimDate Empty?.Paths[OLE DB Source Output]"
           TopLeft="267.80000337192,80.7529417255758">
@@ -4799,22 +4791,22 @@ FROM     Countries INNER JOIN
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Load\DimDate"
+          TopLeft="113.6,144.8" />
+        <NodeLayout
           Size="142.4,41.6"
           Id="Package\Load Temporal Dimensions\DimDate Load\CSV DimDate"
           TopLeft="113.6,43.2" />
-        <NodeLayout
-          Size="120,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Load\DimDate"
-          TopLeft="113.6,144.8" />
         <EdgeLayout
           Id="Package\Load Temporal Dimensions\DimDate Load.Paths[Flat File Source Output]"
           TopLeft="184.8,84.8">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-11.2,60"
+              EndConnector="-11.6,60"
               Start="0,0"
-              End="-11.2,52.5">
+              End="-11.6,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4825,13 +4817,13 @@ FROM     Countries INNER JOIN
                     Point2="0,30"
                     Point3="-4,30" />
                   <mssgle:LineSegment
-                    End="-7.20000000000002,30" />
+                    End="-7.60000000000002,30" />
                   <mssgle:CubicBezierSegment
-                    Point1="-7.20000000000002,30"
-                    Point2="-11.2,30"
-                    Point3="-11.2,34" />
+                    Point1="-7.60000000000002,30"
+                    Point2="-11.6,30"
+                    Point3="-11.6,34" />
                   <mssgle:LineSegment
-                    End="-11.2,52.5" />
+                    End="-11.6,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
