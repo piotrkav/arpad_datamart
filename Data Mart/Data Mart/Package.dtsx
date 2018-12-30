@@ -12,8 +12,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{604F1F1C-A6EE-43DC-B5E9-406C1F652457}">
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{D9F690F6-6C6A-460D-B965-6D9FEAB750FB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -873,7 +873,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Create Data Mart Database"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -897,7 +897,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Create Staging Area Database"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -950,7 +950,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute DM Script"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1007,7 +1007,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute SA Script"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4467,6 +4467,14 @@ FROM     Countries INNER JOIN
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Load Temporal Dimensions" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{1C974789-4F5C-4E83-8176-EB9868F5539E}"
+      DTS:From="Package\Foreach Staging Area Create Table Script"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load MoreOrdersStagingAreaTables" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -4521,6 +4529,45 @@ FROM     Countries INNER JOIN
           Size="218.4,173.6"
           Id="Package\Load MoreOrdersStagingAreaTables"
           TopLeft="35.8441564545783,255.828880195462" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Empty?"
+          TopLeft="46.5142922148414,15.3411793448109" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Load"
+          TopLeft="53.3714351887607,100.329414338637" />
+        <EdgeLayout
+          Id="Package\Load Temporal Dimensions.PrecedenceConstraints[Constraint]"
+          TopLeft="125.342863701801,56.9411793448109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.3882349938258"
+              Start="0,0"
+              End="0,35.8882349938258">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.8882349938258" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,9.94411749691291,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="265.6,193.6"
+          Size="265.6,236.8"
+          Id="Package\Load Temporal Dimensions"
+          TopLeft="335.428577140886,262.776471737924" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="144.071426537572,59.9882344104015">
@@ -4565,45 +4612,6 @@ FROM     Countries INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="156.8,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Empty?"
-          TopLeft="46.5142922148414,15.3411793448109" />
-        <NodeLayout
-          Size="144.8,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Load"
-          TopLeft="53.3714351887607,100.329414338637" />
-        <EdgeLayout
-          Id="Package\Load Temporal Dimensions.PrecedenceConstraints[Constraint]"
-          TopLeft="125.342863701801,56.9411793448109">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43.3882349938258"
-              Start="0,0"
-              End="0,35.8882349938258">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.8882349938258" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,9.94411749691291,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="265.6,193.6"
-          Size="265.6,236.8"
-          Id="Package\Load Temporal Dimensions"
-          TopLeft="335.428577140886,262.776471737924" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="443.971426537572,227.188234410401">
@@ -4630,6 +4638,28 @@ FROM     Countries INNER JOIN
                     Point3="24.257150603314,21.7941186637617" />
                   <mssgle:LineSegment
                     End="24.257150603314,28.0882373275233" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="145.307791496075,225.788234410401">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.040645785061"
+              Start="0,0"
+              End="0,22.540645785061">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.540645785061" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
