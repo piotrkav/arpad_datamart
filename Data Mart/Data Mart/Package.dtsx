@@ -6,13 +6,14 @@
   DTS:CreatorComputerName="LYNX"
   DTS:CreatorName="LYNX\Paulo"
   DTS:DTSID="{37757824-F34A-4873-ADEE-C17261EACE2E}"
+  DTS:EnableConfig="True"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.0900.30"
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{C8F73D5F-BB48-469B-9615-D1E8468357B6}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{AA90EB16-63A6-47AD-95B5-6C1527D60A05}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -45,7 +46,7 @@
       DTS:ObjectName="LocalHost.DataMart">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=DataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=MoreOrdersDataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -75,10 +76,18 @@
       DTS:ObjectName="LocalHost.StagingArea">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=StagingArea;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=MoreOrdersStagingArea;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\Users\piotr\Desktop\ERASMUS_ISEP_SEM2\ARPAD\Projects\Practical\MoreOrderDataMart\Data Mart\DataMartConfiguration.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{0E754A8C-5BBB-414A-A6A8-D72A4CCFF536}"
+      DTS:ObjectName="DataMartConfiguration" />
+  </DTS:Configurations>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -98,6 +107,24 @@
       <DTS:VariableValue
         DTS:DataType="8"
         xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FA85066E-6693-467E-87BD-6E2B42CC3742}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackagePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\piotr\Desktop\ERASMUS_ISEP_SEM2\ARPAD\Projects\Practical\MoreOrderDataMart</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C62C25ED-C8D1-4481-875D-F190C911E79A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ServerName">
+      <DTS:VariableValue
+        DTS:DataType="8">localhost</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -180,10 +207,12 @@
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
         DTS:DTSID="{15F78BB7-4D38-41BB-905A-8D67414E30EE}"
         DTS:ObjectName="{15F78BB7-4D38-41BB-905A-8D67414E30EE}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::PackagePath] + "\\SQL Scripts\\MoreOrdersDataMart"</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\LuísAndréDaSilvaMadu\Desktop\arpad_datamart\SQL Scripts\MoreOrdersDataMart" />
+              Folder="C:\Users\piotr\Desktop\ERASMUS_ISEP_SEM2\ARPAD\Projects\Practical\MoreOrderDataMart\SQL Scripts\MoreOrdersDataMart" />
             <FEFEProperty
               FileSpec="*.sql" />
             <FEFEProperty
@@ -217,8 +246,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{62BA3EB2-7A06-45EC-A4E1-F8FCD8BA52F4}"
-          DTS:ObjectName="{62BA3EB2-7A06-45EC-A4E1-F8FCD8BA52F4}"
+          DTS:DTSID="{650BFD31-912A-4045-844D-C135CFA2B4F8}"
+          DTS:ObjectName="{650BFD31-912A-4045-844D-C135CFA2B4F8}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::DataMartScriptFilename" />
       </DTS:ForEachVariableMappings>
@@ -235,10 +264,12 @@
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
         DTS:DTSID="{6E8729D8-78F6-4FA3-AE7C-679FA5919B95}"
         DTS:ObjectName="{6E8729D8-78F6-4FA3-AE7C-679FA5919B95}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::PackagePath] + "\\SQL Scripts\\MoreOrdersStagingArea"</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\LuísAndréDaSilvaMadu\Desktop\arpad_datamart\SQL Scripts\MoreOrdersStagingArea" />
+              Folder="C:\Users\piotr\Desktop\ERASMUS_ISEP_SEM2\ARPAD\Projects\Practical\MoreOrderDataMart\SQL Scripts\MoreOrdersStagingArea" />
             <FEFEProperty
               FileSpec="*.sql" />
             <FEFEProperty
@@ -272,8 +303,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{4A50CE98-5C36-4E72-9E63-6186114A2F74}"
-          DTS:ObjectName="{4A50CE98-5C36-4E72-9E63-6186114A2F74}"
+          DTS:DTSID="{0FA4E058-DBD8-4E04-B57F-4A6F92690DFE}"
+          DTS:ObjectName="{0FA4E058-DBD8-4E04-B57F-4A6F92690DFE}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::StagingAreaScriptFilename" />
       </DTS:ForEachVariableMappings>
