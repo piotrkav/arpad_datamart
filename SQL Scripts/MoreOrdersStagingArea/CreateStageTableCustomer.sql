@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Customer')
 	CREATE TABLE [dbo].[Customer]
 	(
-		[CustomerID] [char](11),
+		[CustomerID] [int],
 		[CustomerTypeDescription] [nvarchar](50),
 		[Discount] [tinyint],
 		[DateOfBirthDate] [datetime],

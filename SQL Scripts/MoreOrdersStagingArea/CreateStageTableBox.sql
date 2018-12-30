@@ -7,9 +7,7 @@ IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Box')
 	[BoxLength] [tinyint],
 	[BoxWidth] [tinyint],
 	[BoxVolWeight] [tinyint],
-	[Location] [nvarchar](50),
-	[CreateDate] [datetime],
-	[LastUpdateDate] [datetime]
+	[Location] [nvarchar](50)	
 	)
 ELSE
 	TRUNCATE TABLE Box

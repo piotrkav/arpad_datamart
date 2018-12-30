@@ -5,9 +5,7 @@ IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Category')
 	[ParentID] [char](11),
 	[Name] [nvarchar](50),
 	[Deep] [nvarchar](100),
-	[Gender] [char](1),
-	[CreateDate] [datetime],
-	[LastUpdateDate] [datetime]
+	[Gender] [char](1)
 	)
 ELSE
 	TRUNCATE TABLE Category
