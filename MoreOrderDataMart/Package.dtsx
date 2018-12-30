@@ -12,11 +12,37 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{50262F6B-B17B-4008-89CD-6B7706108BF7}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{FD744CED-5FEA-400B-9150-61E1575F0BDB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CreateStageTableBox.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{4C261C79-E8D2-49C7-BD83-7B79CD35AD73}"
+      DTS:ObjectName="CreateStageTableBox.sql">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::MoreOrdersStagingAreaFilename]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DataMart]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{7AED6B0A-F1D6-490F-8FFB-CC707FAD4C50}"
+      DTS:ObjectName="DataMart">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[User::DataMartDBName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::ServerName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=MoreOrdersDataMart;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost.master]"
       DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
@@ -25,6 +51,21 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=localhost;Initial Catalog=master;Integrated Security=True;Application Name=SSIS-Package-{83964716-4EDF-4336-B48E-B522CAB4ED32}localhost.master1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[StagingArea]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{5102ae38-055a-44ef-8ac4-d1655396bd8b}"
+      DTS:ObjectName="StagingArea">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[User::DataMartDBName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::ServerName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=MoreOrdersStagingArea;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -37,6 +78,16 @@
       DTS:ObjectName="MoreOrderDataMartConfig" />
   </DTS:Configurations>
   <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B84A8AB6-B4B6-4C2F-8EE3-4FC0F54F38C2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MoreOrdersStagingAreaFilename">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{A3CEC89C-DEA1-4384-A1D4-CFE7E8ADA5B0}"
@@ -58,19 +109,19 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Create MoreOrder Staging Area DB"
+      DTS:refId="Package\Create MoreOrder DataMart DB"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{B806A252-0FDC-4407-B7E8-86B84093EEEA}"
+      DTS:DTSID="{5e835005-a94d-4a48-83d3-42f7da6b2ca7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="1033"
-      DTS:ObjectName="Create MoreOrder Staging Area DB"
+      DTS:ObjectName="Create MoreOrder DataMart DB"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{83964716-4EDF-4336-B48E-B522CAB4ED32}"
-          SQLTask:SqlStatementSource="EXEC('IF NOT EXISTS(SELECT name FROM sys.databases WHERE name = ''' + @DBName + ''')&#xA;&#x9;CREATE DATABASE ' + @DBName)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="IF NOT EXISTS (Select * from sys.databases WHERE name = 'MoreOrdersDataMart')&#xA; CREATE DATABASE MoreOrdersDataMart" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="DBName"
             SQLTask:DtsVariableName="User::StagingAreaDBName"
@@ -80,7 +131,124 @@
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Create MoreOrder Staging Area DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B806A252-0FDC-4407-B7E8-86B84093EEEA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="1033"
+      DTS:ObjectName="Create MoreOrder Staging Area DB"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{83964716-4EDF-4336-B48E-B522CAB4ED32}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS (Select * from sys.databases WHERE name = 'MoreOrdersStagingArea')&#xA;&#x9;CREATE DATABASE MoreOrdersStagingArea" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="DBName"
+            SQLTask:DtsVariableName="User::StagingAreaDBName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="16"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach DataMart Create Table Script"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{41e8433a-d2ef-4570-a42d-32c9f0952da5}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach DataMart Create Table Script">
+      <DTS:Variables />
+      <DTS:Executables />
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach StagingArea Create Table Script"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{329C1DEB-D785-4B80-BF2B-0AE240E87941}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach StagingArea Create Table Script">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{994A0417-BD5A-48CB-BC2A-CFA04B74F4CA}"
+        DTS:ObjectName="{994A0417-BD5A-48CB-BC2A-CFA04B74F4CA}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\LuísAndréDaSilvaMadu\Desktop\arpad_datamart\SQL Scripts\MoreOrdersStagingArea" />
+            <FEFEProperty
+              FileSpec="*.sql" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{4F9532B9-01F0-41F4-85FD-CC7373353C4E}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="StagingAreaScriptFilename">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach StagingArea Create Table Script\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{73DDFD9A-2077-4C8F-A811-5DD8C5C177DA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5102ae38-055a-44ef-8ac4-d1655396bd8b}"
+              SQLTask:SqlStmtSourceType="FileConnection"
+              SQLTask:SqlStatementSource="CreateStageTableBox.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{19A7A75F-56C0-40B6-90F3-CA8CEB5687D3}"
+          DTS:ObjectName="{19A7A75F-56C0-40B6-90F3-CA8CEB5687D3}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::MoreOrdersStagingAreaFilename" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{97508B4F-9C7A-495D-8F84-2317EAAB1088}"
+      DTS:From="Package\Create MoreOrder Staging Area DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach StagingArea Create Table Script" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6C8210B1-D644-4BE3-9AB0-F8735271A3B5}"
+      DTS:From="Package\Create MoreOrder DataMart DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Foreach DataMart Create Table Script" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -92,11 +260,101 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="243.2,41.6"
           Id="Package\Create MoreOrder Staging Area DB"
           TopLeft="84.0000014305115,31.8117651520303" />
+        <NodeLayout
+          Size="226.4,41.6"
+          Id="Package\Create MoreOrder DataMart DB"
+          TopLeft="347.428577345245,31.1529393918787" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Foreach StagingArea Create Table Script\Execute SQL Task"
+          TopLeft="60.2285731218299,28.1882379109472" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="298.4,124.8"
+          Size="298.4,168"
+          Id="Package\Foreach StagingArea Create Table Script"
+          TopLeft="39.428572100036,115.011766318879" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="292.8,55.2"
+          Size="292.8,98.4"
+          Id="Package\Foreach DataMart Create Table Script"
+          TopLeft="363.428577617723,115.011766318879" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="205.600001430511,73.4117651520303">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.9714293304755,41.6000011668487"
+              Start="0,0"
+              End="-16.9714293304755,34.1000011668487">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.8000005834243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.8000005834243"
+                    Point2="0,20.8000005834243"
+                    Point3="-4,20.8000005834243" />
+                  <mssgle:LineSegment
+                    End="-12.9714293304755,20.8000005834243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.9714293304755,20.8000005834243"
+                    Point2="-16.9714293304755,20.8000005834243"
+                    Point3="-16.9714293304755,24.8000005834243" />
+                  <mssgle:LineSegment
+                    End="-16.9714293304755,34.1000011668487" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="460.628577345245,72.7529393918787">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.2000002724782,42.2588269270003"
+              Start="0,0"
+              End="49.2000002724782,34.7588269270003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.1294134635001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.1294134635001"
+                    Point2="0,21.1294134635001"
+                    Point3="4,21.1294134635001" />
+                  <mssgle:LineSegment
+                    End="45.2000002724782,21.1294134635001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.2000002724782,21.1294134635001"
+                    Point2="49.2000002724782,21.1294134635001"
+                    Point3="49.2000002724782,25.1294134635001" />
+                  <mssgle:LineSegment
+                    End="49.2000002724782,34.7588269270003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
