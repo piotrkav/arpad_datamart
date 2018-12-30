@@ -12,8 +12,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{45012669-6201-4A18-8AD0-F3C606C41334}">
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{DC7CAFCD-F60D-4CC6-9FAB-91B1D2C7D65D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1027,6 +1027,21 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{731A41C1-FC9E-4D1E-BF01-848B32CDD1DD}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\Load MoreOrdersStagingAreaTables\Load Box"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
@@ -1482,6 +1497,719 @@
                   endId="Package\Load MoreOrdersStagingAreaTables\Load Box\StagingArea Box.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
                   startId="Package\Load MoreOrdersStagingAreaTables\Load Box\MoreOrder Box.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables\Load Category"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{DA9F5E59-EA3D-4C83-9BF4-C905965A27E4}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Category"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MoreOrders Category"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Categories]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrders]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrders]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                          name="CategoryID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[ParentCategoryID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[ParentCategoryID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[ParentCategoryID]"
+                          name="ParentCategoryID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Deep]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[Deep]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Deep]"
+                          name="Deep"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Gender]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          length="1"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Gender]"
+                          name="Gender"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          name="CreateDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                          dataType="i4"
+                          name="CategoryID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[ParentCategoryID]"
+                          dataType="i4"
+                          name="ParentCategoryID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[Deep]"
+                          dataType="i4"
+                          name="Deep" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          dataType="dbDate"
+                          name="CreateDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          dataType="dbDate"
+                          name="LastUpdateDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                          name="CategoryID" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[ParentCategoryID]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[ParentCategoryID]"
+                          name="ParentCategoryID" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[Deep]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[Deep]"
+                          name="Deep" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          name="Gender" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          name="CreateDate" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="SA Category"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Category]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                          cachedDataType="i4"
+                          cachedName="CategoryID"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[CategoryID]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].Columns[Deep]"
+                          cachedDataType="i4"
+                          cachedName="Deep"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[Deep]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Deep]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].Columns[ParentCategoryID]"
+                          cachedDataType="i4"
+                          cachedName="ParentCategoryID"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output].Columns[ParentCategoryID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                          codePage="1250"
+                          dataType="str"
+                          length="11"
+                          name="CategoryID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          codePage="1250"
+                          dataType="str"
+                          length="11"
+                          name="ParentID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[Deep]"
+                          dataType="wstr"
+                          length="100"
+                          name="Deep" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Category.Paths[OLE DB Source Output]"
+                  endId="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D2525715-E5D9-4A29-82AE-239F66ADCDBD}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load CategoryProducts"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MoreOrders CategoryProducts"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[ProductsCategories]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrders]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrders]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          name="ProductID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                          name="CategoryID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[IsMainCategory]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].ExternalColumns[IsMainCategory]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[IsMainCategory]"
+                          name="IsMainCategory"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          dataType="i4"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                          dataType="i4"
+                          name="CategoryID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].ExternalColumns[IsMainCategory]"
+                          dataType="bool"
+                          name="IsMainCategory" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          name="ProductID" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                          name="CategoryID" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[IsMainCategory]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[IsMainCategory]"
+                          name="IsMainCategory" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="SA CategoryProducts"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[CategoryProducts]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                          cachedDataType="i4"
+                          cachedName="ProductID"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                          cachedDataType="i4"
+                          cachedName="CategoryID"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[CategoryID]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].Columns[IsMainCategory]"
+                          cachedDataType="bool"
+                          cachedName="IsMainCategory"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].ExternalColumns[isMainCategory]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output].Columns[IsMainCategory]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                          codePage="1250"
+                          dataType="str"
+                          length="11"
+                          name="CategoryID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                          codePage="1250"
+                          dataType="str"
+                          length="11"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input].ExternalColumns[isMainCategory]"
+                          codePage="1250"
+                          dataType="str"
+                          length="1"
+                          name="isMainCategory" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts.Paths[OLE DB Source Output]"
+                  endId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -4973,12 +5701,24 @@ FROM     Countries INNER JOIN
         <NodeLayout
           Size="121.6,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Box"
-          TopLeft="34.2857154826729,73.8823543139395" />
+          TopLeft="33.714286901513,67.1529424548561" />
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Category"
+          TopLeft="33.714286901513,118.305884618" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts"
+          TopLeft="33.7142869015129,169.788237910947" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Data Flow Task"
+          TopLeft="36.5714298073127,227.152943621705" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="248.8,188.8"
-          Size="248.8,232"
+          PanelSize="248.8,321.6"
+          Size="248.8,364.8"
           Id="Package\Load MoreOrdersStagingAreaTables"
           TopLeft="35.8441564545783,255.828880195462" />
         <NodeLayout
@@ -5373,6 +6113,158 @@ FROM     Countries INNER JOIN
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Box\MoreOrder Box">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Category">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category"
+          TopLeft="54.2545454545454,26.3272727272727" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category"
+          TopLeft="128,158.545454545455" />
+        <EdgeLayout
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Category.Paths[OLE DB Source Output]"
+          TopLeft="143.454545454545,67.9272727272727">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.5454545454546,90.6181818181818"
+              Start="0,0"
+              End="52.5454545454546,83.1181818181818">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.3090909090909" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.3090909090909"
+                    Point2="0,45.3090909090909"
+                    Point3="4,45.3090909090909" />
+                  <mssgle:LineSegment
+                    End="48.5454545454546,45.3090909090909" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.5454545454546,45.3090909090909"
+                    Point2="52.5454545454546,45.3090909090909"
+                    Point3="52.5454545454546,49.3090909090909" />
+                  <mssgle:LineSegment
+                    End="52.5454545454546,83.1181818181818" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts"
+          TopLeft="126.4,133.6" />
+        <NodeLayout
+          Size="219.2,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts"
+          TopLeft="91.2,37.6" />
+        <EdgeLayout
+          Id="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts.Paths[OLE DB Source Output]"
+          TopLeft="200.8,79.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.0000000000001,54.4"
+              Start="0,0"
+              End="14.0000000000001,46.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.2"
+                    Point2="0,27.2"
+                    Point3="4,27.2" />
+                  <mssgle:LineSegment
+                    End="10.0000000000001,27.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.0000000000001,27.2"
+                    Point2="14.0000000000001,27.2"
+                    Point3="14.0000000000001,31.2" />
+                  <mssgle:LineSegment
+                    End="14.0000000000001,46.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
