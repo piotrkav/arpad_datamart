@@ -12,8 +12,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="72"
-  DTS:VersionGUID="{E6D1EAA3-E25A-46C1-9042-23509897C4B3}">
+  DTS:VersionBuild="80"
+  DTS:VersionGUID="{25B4EDBF-C266-4641-9AA0-708D120B8FFF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1019,6 +1019,7 @@
     <DTS:Executable
       DTS:refId="Package\Load MoreOrdersStagingAreaTables"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{FBEBB98F-25DC-461C-8812-64582658EBD1}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -8108,10 +8109,21 @@ FROM     SitesInfo INNER JOIN
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{AB11ADB2-7C13-42C3-B175-1D6CF9F44F9B}"
+          DTS:From="Package\Load MoreOrdersStagingAreaTables\Load Customer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load MoreOrdersStagingAreaTables\Load Box" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load Temporal Dimensions"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{48BCF69C-BDD1-40D2-B2AE-88E5E1D6FA36}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -11035,50 +11047,84 @@ FROM     SitesInfo INNER JOIN
         <NodeLayout
           Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Box"
-          TopLeft="202.857146924856,5.36470629418176" />
+          TopLeft="252.571433485771,7.91443654414627" />
         <NodeLayout
           Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Category"
-          TopLeft="6.2857150058358,57.7411778862499" />
+          TopLeft="6.2857150058358,80.4791437134646" />
         <NodeLayout
           Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts"
-          TopLeft="202.642861113256,58.4470598788408" />
+          TopLeft="202.642861113256,81.1850257060554" />
         <NodeLayout
           Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Customer"
-          TopLeft="6.54545526999927,5.26203417278538" />
+          TopLeft="6.54545526999927,28" />
         <NodeLayout
           Size="140,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Product"
-          TopLeft="7.78571493771611,111.529412588364" />
+          TopLeft="7.78571493771611,134.267378415579" />
         <NodeLayout
           Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Site"
-          TopLeft="9.50000068119596,162.447294332141" />
+          TopLeft="9.50000068119596,185.185260159356" />
         <NodeLayout
           Size="140.8,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load SiteInfo"
-          TopLeft="206.642861181376,161.788235431394" />
+          TopLeft="206.642861181376,184.526201258609" />
         <NodeLayout
           Size="123.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Size"
-          TopLeft="155.428574688581,111.43529662294" />
+          TopLeft="155.428574688581,134.173262450154" />
         <NodeLayout
           Size="131.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Order"
-          TopLeft="12.5714287855187,212.611767194015" />
+          TopLeft="12.5714287855187,235.34973302123" />
         <NodeLayout
           Size="204,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Order Info (ERRORS)"
-          TopLeft="169.474973738416,212.441174677417" />
+          TopLeft="169.474973738416,235.179140504631" />
+        <EdgeLayout
+          Id="Package\Load MoreOrdersStagingAreaTables.PrecedenceConstraints[Constraint]"
+          TopLeft="193.745455269999,48.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58.8259782157716,-20.0855634558537"
+              Start="0,0"
+              End="51.3259782157716,-20.0855634558537">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.4129891078858,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.4129891078858,0"
+                    Point2="29.4129891078858,0"
+                    Point3="29.4129891078858,-4" />
+                  <mssgle:LineSegment
+                    End="29.4129891078858,-16.0855634558537" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.4129891078858,-16.0855634558537"
+                    Point2="29.4129891078858,-20.0855634558537"
+                    Point3="33.4129891078858,-20.0855634558537" />
+                  <mssgle:LineSegment
+                    End="51.3259782157716,-20.0855634558537" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="470.4,436"
           Size="470.4,479.2"
           Id="Package\Load MoreOrdersStagingAreaTables"
-          TopLeft="35.8441564545783,255.828880195462" />
+          TopLeft="33.5584421299386,401.617116793705" />
         <NodeLayout
           Size="156.8,41.6"
           Id="Package\Load Temporal Dimensions\DimDate Empty?"
@@ -11202,26 +11248,26 @@ FROM     SitesInfo INNER JOIN
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="125.472729917006,30.0406457850611"
+              EndConnector="123.187015592366,175.828882383304"
               Start="0,0"
-              End="125.472729917006,22.5406457850611">
+              End="123.187015592366,168.328882383304">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.0203228925305" />
+                    End="0,83.9144411916518" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11.0203228925305"
-                    Point2="0,15.0203228925305"
-                    Point3="4,15.0203228925305" />
+                    Point1="0,83.9144411916518"
+                    Point2="0,87.9144411916518"
+                    Point3="4,87.9144411916518" />
                   <mssgle:LineSegment
-                    End="121.472729917006,15.0203228925305" />
+                    End="119.187015592366,87.9144411916518" />
                   <mssgle:CubicBezierSegment
-                    Point1="121.472729917006,15.0203228925305"
-                    Point2="125.472729917006,15.0203228925305"
-                    Point3="125.472729917006,19.0203228925305" />
+                    Point1="119.187015592366,87.9144411916518"
+                    Point2="123.187015592366,87.9144411916518"
+                    Point3="123.187015592366,91.9144411916518" />
                   <mssgle:LineSegment
-                    End="125.472729917006,22.5406457850611" />
+                    End="123.187015592366,168.328882383304" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
