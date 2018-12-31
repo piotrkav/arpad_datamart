@@ -3,7 +3,7 @@ IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'OrderLineDetail')
 	(
 	[OrderLineID] [char](11),
 	[VATPercentage] [tinyint],
-	[CustomerCurrency] [char](11),
+	[CustomerCurrency] [nvarchar](3),
 	[LineTotal] [int],
 	[SalePercentage] [tinyint],
 	[Discount] [tinyint],
