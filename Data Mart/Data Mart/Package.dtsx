@@ -12,8 +12,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{15C483EF-7484-4A4B-BD67-6F40B9E11B2F}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{8EEE33BB-215D-4A79-A7BA-B01DEE5AB40A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -863,7 +863,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Create Data Mart Database"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -887,7 +887,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Create Staging Area Database"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -940,7 +940,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute DM Script"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -997,7 +997,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute SA Script"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3230,6 +3230,1874 @@ FROM     Countries INNER JOIN
                   endId="Package\Load MoreOrdersStagingAreaTables\Load Product\SA Product.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
                   startId="Package\Load MoreOrdersStagingAreaTables\Load Product\MoreOrder Product.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables\Load Site"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{883EAE75-7684-41D1-BD18-385183127B98}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Site"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MoreOrder Site With Country"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Sites]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Sites.SiteID, Sites.Name, Sites.StocksProducts, Sites.IsSite, Sites.SiteURL, Sites.SiteName, Sites.Initials, Sites.Portal, Sites.Currency, Sites.CreateDate, Countries.Name AS Expr1, Countries.Code, Countries.EuroZone, Countries.VAT, 
+                  Sites.LastUpdateDate
+FROM     Countries INNER JOIN
+                  Sites ON Countries.CountryID = Sites.CountryID</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrders]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrders]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[SiteID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteID]"
+                          name="SiteID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[StocksProducts]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[StocksProducts]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[StocksProducts]"
+                          name="StocksProducts"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[IsSite]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[IsSite]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[IsSite]"
+                          name="IsSite"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteURL]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[SiteURL]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteURL]"
+                          name="SiteURL"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[SiteName]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteName]"
+                          name="SiteName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Portal]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Portal]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Portal]"
+                          name="Portal"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Initials]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Initials]"
+                          length="3"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Initials]"
+                          name="Initials"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Currency]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                          length="3"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Currency]"
+                          name="Currency"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          name="CreateDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Expr1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Expr1]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Expr1]"
+                          name="Expr1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Code]"
+                          name="Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[EuroZone]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[EuroZone]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[EuroZone]"
+                          name="EuroZone"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[VAT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[VAT]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[VAT]"
+                          name="VAT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[SiteID]"
+                          dataType="i4"
+                          name="SiteID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[StocksProducts]"
+                          dataType="bool"
+                          name="StocksProducts" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[IsSite]"
+                          dataType="bool"
+                          name="IsSite" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[SiteURL]"
+                          dataType="wstr"
+                          length="255"
+                          name="SiteURL" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[SiteName]"
+                          dataType="wstr"
+                          length="255"
+                          name="SiteName" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Portal]"
+                          dataType="bool"
+                          name="Portal" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Initials]"
+                          dataType="wstr"
+                          length="3"
+                          name="Initials" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Currency]"
+                          dataType="wstr"
+                          length="3"
+                          name="Currency" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          dataType="dbDate"
+                          name="CreateDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Expr1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Expr1" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                          dataType="wstr"
+                          length="2"
+                          name="Code" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[EuroZone]"
+                          dataType="bool"
+                          name="EuroZone" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[VAT]"
+                          dataType="r8"
+                          name="VAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          dataType="dbDate"
+                          name="LastUpdateDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[SiteID]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[SiteID]"
+                          name="SiteID" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[StocksProducts]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[StocksProducts]"
+                          name="StocksProducts" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[IsSite]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[IsSite]"
+                          name="IsSite" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[SiteURL]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[SiteURL]"
+                          name="SiteURL" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[SiteName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[SiteName]"
+                          name="SiteName" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Portal]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Portal]"
+                          name="Portal" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Initials]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Initials]"
+                          name="Initials" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Currency]"
+                          name="Currency" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          name="CreateDate" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Expr1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Expr1]"
+                          name="Expr1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          dataType="wstr"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[Code]"
+                          name="Code" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[EuroZone]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[EuroZone]"
+                          name="EuroZone" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[VAT]"
+                          dataType="r8"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[VAT]"
+                          name="VAT" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Site]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SiteID]"
+                          cachedDataType="i4"
+                          cachedName="SiteID"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteID]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StocksProducts]"
+                          cachedDataType="bool"
+                          cachedName="StocksProducts"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StocksProducts]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[StocksProducts]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsSite]"
+                          cachedDataType="bool"
+                          cachedName="IsSite"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsSite]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[IsSite]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SiteURL]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SiteURL"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SiteUrl]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteURL]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SiteName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SiteName"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sitename]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[SiteName]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Portal]"
+                          cachedDataType="bool"
+                          cachedName="Portal"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Portal]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Portal]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Initials]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="Initials"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Initials]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Initials]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Currency]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="Currency"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Currency]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Currency]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreateDate]"
+                          cachedDataType="dbDate"
+                          cachedName="CreateDate"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[CreateDate]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EuroZone]"
+                          cachedDataType="bool"
+                          cachedName="EuroZone"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EuroZone]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[EuroZone]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VAT]"
+                          cachedDataType="r8"
+                          cachedName="VAT"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Vat]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[VAT]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastUpdateDate]"
+                          cachedDataType="dbDate"
+                          cachedName="LastUpdateDate"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[LastUpdateDate]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Expr1]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Expr1"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Expr1]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Code]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="Code"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output].Columns[Code]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SiteID]"
+                          codePage="1250"
+                          dataType="str"
+                          length="11"
+                          name="SiteID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsSite]"
+                          dataType="bool"
+                          name="IsSite" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StocksProducts]"
+                          dataType="bool"
+                          name="StocksProducts" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SiteUrl]"
+                          dataType="wstr"
+                          length="50"
+                          name="SiteUrl" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sitename]"
+                          dataType="wstr"
+                          length="50"
+                          name="Sitename" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          dataType="wstr"
+                          length="50"
+                          name="Country" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                          dataType="wstr"
+                          length="2"
+                          name="CountryCode" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EuroZone]"
+                          dataType="bool"
+                          name="EuroZone" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Vat]"
+                          dataType="r8"
+                          name="Vat" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Portal]"
+                          dataType="wstr"
+                          length="50"
+                          name="Portal" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Initials]"
+                          dataType="wstr"
+                          length="11"
+                          name="Initials" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Currency]"
+                          dataType="wstr"
+                          length="3"
+                          name="Currency" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                          dataType="dbTimeStamp"
+                          name="CreateDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdateDate]"
+                          dataType="dbTimeStamp"
+                          name="LastUpdateDate" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Site.Paths[OLE DB Source Output]"
+                  endId="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables\Load SiteInfo"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{67779A24-2E57-4A0F-8BB1-F162BF963133}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load SiteInfo"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load MoreOrdersStagingAreaTables\Load Size"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{C933E4BF-261A-4331-ABBD-50E0DE4F03EE}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Size"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MoreOrdersSize"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Sizes]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrders]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrders]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[SizeID]"
+                          codePage="1250"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[SizeID]"
+                          length="11"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[SizeID]"
+                          name="SizeID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          name="CreateDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[17]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[17]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[17]"
+                          name="17"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[18]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[18]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[18]"
+                          name="18"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[19]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[19]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[19]"
+                          name="19"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[20]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[20]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[20]"
+                          name="20"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[21]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[21]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[21]"
+                          name="21"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[22]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[22]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[22]"
+                          name="22"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[23]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[23]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[23]"
+                          name="23"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[24]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[24]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[24]"
+                          name="24"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[25]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[25]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[25]"
+                          name="25"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[26]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[26]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[26]"
+                          name="26"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[27]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[27]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[27]"
+                          name="27"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[28]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[28]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[28]"
+                          name="28"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[29]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[29]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[29]"
+                          name="29"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[30]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[30]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[30]"
+                          name="30"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[31]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[31]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[31]"
+                          name="31"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[32]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[32]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[32]"
+                          name="32"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[33]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[33]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[33]"
+                          name="33"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[34]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[34]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[34]"
+                          name="34"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[35]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[35]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[35]"
+                          name="35"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[36]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[36]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[36]"
+                          name="36"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[37]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[37]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[37]"
+                          name="37"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[38]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[38]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[38]"
+                          name="38"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[39]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[39]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[39]"
+                          name="39"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[40]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[40]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[40]"
+                          name="40"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[41]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[41]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[41]"
+                          name="41"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[42]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[42]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[42]"
+                          name="42"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[43]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[43]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[43]"
+                          name="43"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[44]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[44]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[44]"
+                          name="44"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[45]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[45]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[45]"
+                          name="45"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[46]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[46]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[46]"
+                          name="46"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[47]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[47]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[47]"
+                          name="47"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[48]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[48]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[48]"
+                          name="48"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[49]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[49]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[49]"
+                          name="49"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[50]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[50]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[50]"
+                          name="50"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[51]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[51]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[51]"
+                          name="51"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[52]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[52]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[52]"
+                          name="52"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[FriendlyName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[FriendlyName]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[FriendlyName]"
+                          name="FriendlyName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[RetailInvisible]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[RetailInvisible]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[RetailInvisible]"
+                          name="RetailInvisible"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[MinimunSizeAvailable]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[MinimunSizeAvailable]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[MinimunSizeAvailable]"
+                          name="MinimunSizeAvailable"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[MaximunSizeAvailable]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[MaximunSizeAvailable]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[MaximunSizeAvailable]"
+                          name="MaximunSizeAvailable"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[CountryCode]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[CountryCode]"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[CountryCode]"
+                          name="CountryCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[SizeID]"
+                          dataType="i4"
+                          name="SizeID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          dataType="dbDate"
+                          name="CreateDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          dataType="dbDate"
+                          name="LastUpdateDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[17]"
+                          dataType="r8"
+                          name="17" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[18]"
+                          dataType="r8"
+                          name="18" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[19]"
+                          dataType="r8"
+                          name="19" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[20]"
+                          dataType="r8"
+                          name="20" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[21]"
+                          dataType="r8"
+                          name="21" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[22]"
+                          dataType="wstr"
+                          length="255"
+                          name="22" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[23]"
+                          dataType="wstr"
+                          length="255"
+                          name="23" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[24]"
+                          dataType="wstr"
+                          length="255"
+                          name="24" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[25]"
+                          dataType="wstr"
+                          length="255"
+                          name="25" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[26]"
+                          dataType="wstr"
+                          length="255"
+                          name="26" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[27]"
+                          dataType="wstr"
+                          length="255"
+                          name="27" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[28]"
+                          dataType="wstr"
+                          length="255"
+                          name="28" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[29]"
+                          dataType="wstr"
+                          length="255"
+                          name="29" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[30]"
+                          dataType="wstr"
+                          length="255"
+                          name="30" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[31]"
+                          dataType="wstr"
+                          length="255"
+                          name="31" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[32]"
+                          dataType="wstr"
+                          length="255"
+                          name="32" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[33]"
+                          dataType="wstr"
+                          length="255"
+                          name="33" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[34]"
+                          dataType="wstr"
+                          length="255"
+                          name="34" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[35]"
+                          dataType="wstr"
+                          length="255"
+                          name="35" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[36]"
+                          dataType="wstr"
+                          length="255"
+                          name="36" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[37]"
+                          dataType="wstr"
+                          length="255"
+                          name="37" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[38]"
+                          dataType="wstr"
+                          length="255"
+                          name="38" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[39]"
+                          dataType="wstr"
+                          length="255"
+                          name="39" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[40]"
+                          dataType="wstr"
+                          length="255"
+                          name="40" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[41]"
+                          dataType="wstr"
+                          length="255"
+                          name="41" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[42]"
+                          dataType="wstr"
+                          length="255"
+                          name="42" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[43]"
+                          dataType="wstr"
+                          length="255"
+                          name="43" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[44]"
+                          dataType="wstr"
+                          length="255"
+                          name="44" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[45]"
+                          dataType="wstr"
+                          length="255"
+                          name="45" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[46]"
+                          dataType="wstr"
+                          length="255"
+                          name="46" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[47]"
+                          dataType="wstr"
+                          length="255"
+                          name="47" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[48]"
+                          dataType="wstr"
+                          length="255"
+                          name="48" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[49]"
+                          dataType="wstr"
+                          length="255"
+                          name="49" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[50]"
+                          dataType="wstr"
+                          length="255"
+                          name="50" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[51]"
+                          dataType="wstr"
+                          length="255"
+                          name="51" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[52]"
+                          dataType="wstr"
+                          length="255"
+                          name="52" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[FriendlyName]"
+                          dataType="wstr"
+                          length="255"
+                          name="FriendlyName" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[RetailInvisible]"
+                          dataType="bool"
+                          name="RetailInvisible" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[MinimunSizeAvailable]"
+                          dataType="i4"
+                          name="MinimunSizeAvailable" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[MaximunSizeAvailable]"
+                          dataType="i4"
+                          name="MaximunSizeAvailable" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].ExternalColumns[CountryCode]"
+                          dataType="wstr"
+                          length="2"
+                          name="CountryCode" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[SizeID]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[SizeID]"
+                          name="SizeID" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[17]"
+                          dataType="r8"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[17]"
+                          name="17" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[18]"
+                          dataType="r8"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[18]"
+                          name="18" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[19]"
+                          dataType="r8"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[19]"
+                          name="19" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[20]"
+                          dataType="r8"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[20]"
+                          name="20" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[21]"
+                          dataType="r8"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[21]"
+                          name="21" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[22]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[22]"
+                          name="22" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[23]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[23]"
+                          name="23" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[24]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[24]"
+                          name="24" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[25]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[25]"
+                          name="25" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[26]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[26]"
+                          name="26" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[27]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[27]"
+                          name="27" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[28]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[28]"
+                          name="28" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[29]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[29]"
+                          name="29" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[30]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[30]"
+                          name="30" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[31]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[31]"
+                          name="31" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[32]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[32]"
+                          name="32" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[33]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[33]"
+                          name="33" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[34]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[34]"
+                          name="34" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[35]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[35]"
+                          name="35" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[36]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[36]"
+                          name="36" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[37]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[37]"
+                          name="37" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[38]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[38]"
+                          name="38" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[39]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[39]"
+                          name="39" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[40]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[40]"
+                          name="40" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[41]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[41]"
+                          name="41" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[42]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[42]"
+                          name="42" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[43]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[43]"
+                          name="43" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[44]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[44]"
+                          name="44" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[45]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[45]"
+                          name="45" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[46]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[46]"
+                          name="46" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[47]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[47]"
+                          name="47" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[48]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[48]"
+                          name="48" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[49]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[49]"
+                          name="49" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[50]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[50]"
+                          name="50" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[51]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[51]"
+                          name="51" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[52]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[52]"
+                          name="52" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[FriendlyName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[FriendlyName]"
+                          name="FriendlyName" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[RetailInvisible]"
+                          dataType="bool"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[RetailInvisible]"
+                          name="RetailInvisible" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[MinimunSizeAvailable]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[MinimunSizeAvailable]"
+                          name="MinimunSizeAvailable" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[MaximunSizeAvailable]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[MaximunSizeAvailable]"
+                          name="MaximunSizeAvailable" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[CountryCode]"
+                          dataType="wstr"
+                          length="2"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[CountryCode]"
+                          name="CountryCode" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          name="CreateDate" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="SA Size"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Size]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.MoreOrdersStagingArea]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].Columns[SizeID]"
+                          cachedCodepage="1250"
+                          cachedDataType="str"
+                          cachedLength="11"
+                          cachedName="SizeID"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[SizeID]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[SizeID]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].Columns[CreateDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="CreateDate"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[CreateDate]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].Columns[LastUpdateDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="LastUpdateDate"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdateDate]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[LastUpdateDate]" />
+                        <inputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output].Columns[Name]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[SizeID]"
+                          codePage="1250"
+                          dataType="str"
+                          length="11"
+                          name="SizeID" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                          dataType="dbTimeStamp"
+                          name="CreateDate" />
+                        <externalMetadataColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input].ExternalColumns[LastUpdateDate]"
+                          dataType="dbTimeStamp"
+                          name="LastUpdateDate" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load MoreOrdersStagingAreaTables\Load Size.Paths[OLE DB Source Output]"
+                  endId="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -6160,30 +8028,42 @@ FROM     Countries INNER JOIN
           Id="Package\Foreach Staging Area Create Table Script"
           TopLeft="35.5714265375721,112.988234410401" />
         <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer"
-          TopLeft="31.6883128410367,16.8855637475657" />
-        <NodeLayout
-          Size="121.6,41.6"
+          Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Box"
-          TopLeft="33.714286901513,67.1529424548561" />
+          TopLeft="9.14285791163549,52.4705893077651" />
         <NodeLayout
-          Size="146.4,41.6"
+          Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Category"
-          TopLeft="33.714286901513,118.305884618" />
+          TopLeft="9.71428649279544,103.623531470909" />
         <NodeLayout
           Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts"
-          TopLeft="33.7142869015129,169.788237910947" />
+          TopLeft="9.50000068119596,169.788237910947" />
         <NodeLayout
-          Size="140,41.6"
+          Size="187.2,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer"
+          TopLeft="6.54545526999927,5.26203417278538" />
+        <NodeLayout
+          Size="187.2,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Product"
-          TopLeft="36.5714298073127,227.152943621705" />
+          TopLeft="9.50000068119596,227.152943621705" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Site"
+          TopLeft="9.50000068119596,280.517884223331" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load SiteInfo"
+          TopLeft="208.928575506016,270.682354605652" />
+        <NodeLayout
+          Size="123.2,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Size"
+          TopLeft="11.4285722362752,330.164708919591" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="248.8,376"
-          Size="248.8,419.2"
+          PanelSize="400.8,436"
+          Size="400.8,479.2"
           Id="Package\Load MoreOrdersStagingAreaTables"
           TopLeft="35.8441564545783,255.828880195462" />
         <NodeLayout
@@ -6214,7 +8094,7 @@ FROM     Countries INNER JOIN
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,9.94411749691304,16,16"
+              BoundingBox="-8,18.25,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6224,7 +8104,7 @@ FROM     Countries INNER JOIN
           PanelSize="265.6,193.6"
           Size="265.6,236.8"
           Id="Package\Load Temporal Dimensions"
-          TopLeft="335.428577140886,262.776471737924" />
+          TopLeft="432.457149853999,253.600001020992" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="144.071426537572,59.9882344104015">
@@ -6275,26 +8155,26 @@ FROM     Countries INNER JOIN
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="24.257150603314,35.5882373275233"
+              EndConnector="121.285723316427,26.411766610591"
               Start="0,0"
-              End="24.257150603314,28.0882373275233">
+              End="121.285723316427,18.911766610591">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7941186637617" />
+                    End="0,9.2058833052955" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7941186637617"
-                    Point2="0,17.7941186637617"
-                    Point3="4,17.7941186637617" />
+                    Point1="0,9.2058833052955"
+                    Point2="0,13.2058833052955"
+                    Point3="4,13.2058833052955" />
                   <mssgle:LineSegment
-                    End="20.257150603314,17.7941186637617" />
+                    End="117.285723316427,13.2058833052955" />
                   <mssgle:CubicBezierSegment
-                    Point1="20.257150603314,17.7941186637617"
-                    Point2="24.257150603314,17.7941186637617"
-                    Point3="24.257150603314,21.7941186637617" />
+                    Point1="117.285723316427,13.2058833052955"
+                    Point2="121.285723316427,13.2058833052955"
+                    Point3="121.285723316427,17.2058833052955" />
                   <mssgle:LineSegment
-                    End="24.257150603314,28.0882373275233" />
+                    End="121.285723316427,18.911766610591" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6309,9 +8189,9 @@ FROM     Countries INNER JOIN
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="14.6727299170062,30.040645785061"
+              EndConnector="90.6727299170062,30.0406457850611"
               Start="0,0"
-              End="14.6727299170062,22.540645785061">
+              End="90.6727299170062,22.5406457850611">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -6322,13 +8202,13 @@ FROM     Countries INNER JOIN
                     Point2="0,15.0203228925305"
                     Point3="4,15.0203228925305" />
                   <mssgle:LineSegment
-                    End="10.6727299170062,15.0203228925305" />
+                    End="86.6727299170062,15.0203228925305" />
                   <mssgle:CubicBezierSegment
-                    Point1="10.6727299170062,15.0203228925305"
-                    Point2="14.6727299170062,15.0203228925305"
-                    Point3="14.6727299170062,19.0203228925305" />
+                    Point1="86.6727299170062,15.0203228925305"
+                    Point2="90.6727299170062,15.0203228925305"
+                    Point3="90.6727299170062,19.0203228925305" />
                   <mssgle:LineSegment
-                    End="14.6727299170062,22.540645785061" />
+                    End="90.6727299170062,22.5406457850611" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6341,195 +8221,10 @@ FROM     Countries INNER JOIN
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="246.4,41.6"
-          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country"
-          TopLeft="5.49999999999999,5.5" />
-        <NodeLayout
-          Size="183.2,41.6"
-          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer\StagingArea Customer"
-          TopLeft="110.857144745029,122.964707606887" />
-        <EdgeLayout
-          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer.Paths[OLE DB Source Output]"
-          TopLeft="128.7,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="73.757144745029,75.864707606887"
-              Start="0,0"
-              End="73.757144745029,68.364707606887">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.9323538034435" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33.9323538034435"
-                    Point2="0,37.9323538034435"
-                    Point3="4,37.9323538034435" />
-                  <mssgle:LineSegment
-                    End="69.757144745029,37.9323538034435" />
-                  <mssgle:CubicBezierSegment
-                    Point1="69.757144745029,37.9323538034435"
-                    Point2="73.757144745029,37.9323538034435"
-                    Point3="73.757144745029,41.9323538034435" />
-                  <mssgle:LineSegment
-                    End="73.757144745029,68.364707606887" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer\StagingArea Customer">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Load Temporal Dimensions\DimDate Empty?">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Empty?\Row Count"
-          TopLeft="204.000003474099,144.988237327523" />
-        <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Empty?\OLE DB Source"
-          TopLeft="192.000003269741,39.1529417255758" />
-        <EdgeLayout
-          Id="Package\Load Temporal Dimensions\DimDate Empty?.Paths[OLE DB Source Output]"
-          TopLeft="267.80000337192,80.7529417255758">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,64.2352956019471"
-              Start="0,0"
-              End="0,56.7352956019471">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,56.7352956019471" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Temporal Dimensions\DimDate Empty?\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Load Temporal Dimensions\DimDate Load">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="119.2,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Load\DimDate"
-          TopLeft="113.6,144.8" />
-        <NodeLayout
-          Size="142.4,41.6"
-          Id="Package\Load Temporal Dimensions\DimDate Load\CSV DimDate"
-          TopLeft="113.6,43.2" />
-        <EdgeLayout
-          Id="Package\Load Temporal Dimensions\DimDate Load.Paths[Flat File Source Output]"
-          TopLeft="184.8,84.8">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-11.6,60"
-              Start="0,0"
-              End="-11.6,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-7.60000000000002,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-7.60000000000002,30"
-                    Point2="-11.6,30"
-                    Point3="-11.6,34" />
-                  <mssgle:LineSegment
-                    End="-11.6,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Temporal Dimensions\DimDate Load\DimDate">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Box">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="156,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Box\StagingArea Box"
@@ -6557,14 +8252,16 @@ FROM     Countries INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Box\StagingArea Box">
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Box\MoreOrder Box">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6577,7 +8274,7 @@ FROM     Countries INNER JOIN
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Box\MoreOrder Box">
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Box\StagingArea Box">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6593,15 +8290,15 @@ FROM     Countries INNER JOIN
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Category">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="178.4,41.6"
-          Id="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category"
-          TopLeft="54.2545454545454,26.3272727272727" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="136,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Category\SA Category"
           TopLeft="128,158.545454545455" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Category\MoreOrders Category"
+          TopLeft="54.2545454545454,26.3272727272727" />
         <EdgeLayout
           Id="Package\Load MoreOrdersStagingAreaTables\Load Category.Paths[OLE DB Source Output]"
           TopLeft="143.454545454545,67.9272727272727">
@@ -6633,7 +8330,9 @@ FROM     Countries INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6669,7 +8368,7 @@ FROM     Countries INNER JOIN
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176.8,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts"
@@ -6709,12 +8408,27 @@ FROM     Countries INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\SA CategoryProducts">
     <Properties>
@@ -6728,8 +8442,68 @@ FROM     Countries INNER JOIN
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="246.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country"
+          TopLeft="5.49999999999999,5.5" />
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer\StagingArea Customer"
+          TopLeft="110.857144745029,122.964707606887" />
+        <EdgeLayout
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Customer.Paths[OLE DB Source Output]"
+          TopLeft="128.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.757144745029,75.864707606887"
+              Start="0,0"
+              End="73.757144745029,68.364707606887">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.9323538034435" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.9323538034435"
+                    Point2="0,37.9323538034435"
+                    Point3="4,37.9323538034435" />
+                  <mssgle:LineSegment
+                    End="69.757144745029,37.9323538034435" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69.757144745029,37.9323538034435"
+                    Point2="73.757144745029,37.9323538034435"
+                    Point3="73.757144745029,41.9323538034435" />
+                  <mssgle:LineSegment
+                    End="73.757144745029,68.364707606887" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load CategoryProducts\MoreOrders CategoryProducts">
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer\MoreOrders Customer With Country">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Customer\StagingArea Customer">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6745,15 +8519,15 @@ FROM     Countries INNER JOIN
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Product">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="168,41.6"
-          Id="Package\Load MoreOrdersStagingAreaTables\Load Product\MoreOrder Product"
-          TopLeft="192,48.8" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="129.6,41.6"
           Id="Package\Load MoreOrdersStagingAreaTables\Load Product\SA Product"
           TopLeft="187.2,164" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Product\MoreOrder Product"
+          TopLeft="192,48.8" />
         <EdgeLayout
           Id="Package\Load MoreOrdersStagingAreaTables\Load Product.Paths[OLE DB Source Output]"
           TopLeft="276,90.4">
@@ -6785,7 +8559,9 @@ FROM     Countries INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6806,6 +8582,278 @@ FROM     Countries INNER JOIN
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Product\SA Product">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Site">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination"
+          TopLeft="226.4,153.6" />
+        <NodeLayout
+          Size="214.4,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country"
+          TopLeft="133.6,50.4" />
+        <EdgeLayout
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Site.Paths[OLE DB Source Output]"
+          TopLeft="240.8,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70.8000000000001,61.6"
+              Start="0,0"
+              End="70.8000000000001,54.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.8"
+                    Point2="0,30.8"
+                    Point3="4,30.8" />
+                  <mssgle:LineSegment
+                    End="66.8000000000001,30.8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="66.8000000000001,30.8"
+                    Point2="70.8000000000001,30.8"
+                    Point3="70.8000000000001,34.8" />
+                  <mssgle:LineSegment
+                    End="70.8000000000001,54.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Site\MoreOrder Site With Country">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Site\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Temporal Dimensions\DimDate Empty?">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Empty?\Row Count"
+          TopLeft="204.000003474099,144.988237327523" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Empty?\OLE DB Source"
+          TopLeft="192.000003269741,39.1529417255758" />
+        <EdgeLayout
+          Id="Package\Load Temporal Dimensions\DimDate Empty?.Paths[OLE DB Source Output]"
+          TopLeft="267.80000337192,80.7529417255758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64.2352956019471"
+              Start="0,0"
+              End="0,56.7352956019471">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.7352956019471" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Temporal Dimensions\DimDate Empty?\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Temporal Dimensions\DimDate Load">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Load\DimDate"
+          TopLeft="113.6,144.8" />
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\Load Temporal Dimensions\DimDate Load\CSV DimDate"
+          TopLeft="113.6,43.2" />
+        <EdgeLayout
+          Id="Package\Load Temporal Dimensions\DimDate Load.Paths[Flat File Source Output]"
+          TopLeft="184.8,84.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.6,60"
+              Start="0,0"
+              End="-11.6,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-7.60000000000002,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.60000000000002,30"
+                    Point2="-11.6,30"
+                    Point3="-11.6,34" />
+                  <mssgle:LineSegment
+                    End="-11.6,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Temporal Dimensions\DimDate Load\DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Size">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize"
+          TopLeft="84.5714300116715,41.6000005834243" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size"
+          TopLeft="185.142860295821,122.352942892424" />
+        <EdgeLayout
+          Id="Package\Load MoreOrdersStagingAreaTables\Load Size.Paths[OLE DB Source Output]"
+          TopLeft="160.571430011671,83.2000005834243">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.9714302841498,39.1529423090001"
+              Start="0,0"
+              End="80.9714302841498,31.6529423090001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5764711545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5764711545"
+                    Point2="0,19.5764711545"
+                    Point3="4,19.5764711545" />
+                  <mssgle:LineSegment
+                    End="76.9714302841498,19.5764711545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.9714302841498,19.5764711545"
+                    Point2="80.9714302841498,19.5764711545"
+                    Point3="80.9714302841498,23.5764711545" />
+                  <mssgle:LineSegment
+                    End="80.9714302841498,31.6529423090001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Size\MoreOrdersSize">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load MoreOrdersStagingAreaTables\Load Size\SA Size">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
