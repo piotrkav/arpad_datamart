@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'OrderDQP')
 	CREATE TABLE [dbo].[OrderDQP]
 	(
-		[CustomerId] [char](11),
+		[CustomerID] [int],
 		[CustomerTypeDescription] [nvarchar](50),
 		[OrderCode] [nvarchar](11),
 		[DQP] [nvarchar](100)

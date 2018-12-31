@@ -1,17 +1,17 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'OrderLine')
 	CREATE TABLE [dbo].[OrderLine]
 	(
-	[OrderLineID] [char](11),
-	[OrderID] [char](11),
-	[ProductID] [char](11),
-	[Quantity] [tinyint],
-	[Size] [tinyint],
-	[RealSize] [tinyint],
-	[SizeID] [char](11),
+	[OrderLineID] [int],
+	[OrderID] [int],
+	[ProductID] [int],
+	[Quantity] [int],
+	[Size] [int],
+	[RealSize] [nvarchar](255),
+	[SizeID] [int],
 	[LineTotal] [int],
 	[FixedPrice] [int],
-	[CreateDate] [datetime],
-	[LastUpdateDate] [datetime]
+	[CreateDate] [date],
+	[LastUpdateDate] [date]
 	)
 ELSE
 	TRUNCATE TABLE [OrderLine]

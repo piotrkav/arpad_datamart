@@ -1,26 +1,28 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Order')
 	CREATE TABLE [dbo].[Order]
 	(
-		[CostumerID] [char](11),
-		[TotalQuantity] [tinyint],
+		[OrderID] [int],
+		[CostumerID] [int],
+		[SiteID] [int],
+		[TotalQuantity] [int],
 		[ShippingCost] [int],
 		[TotalWithoutShipping] [int],
 		[TotalWithShipping] [int],
 		[ShipType] [nvarchar](11),
 		[PayType] [nvarchar](11),
-		[Address1] [nvarchar](200),
-		[Address2] [nvarchar](200),
+		[Address1] [nvarchar](255),
+		[Address2] [nvarchar](255),
 		[CountryID] [char] (11),
-		[City] [nvarchar](50),
-		[State] [nvarchar](50),
-		[Zip] [nvarchar](11),
-		[ShipDiscount] [tinyint],
-		[OrderCode] [nvarchar](11),
-		[Currency] [nvarchar](11),
-		[promoCode] [nvarchar](11),
-		[IsFreeShippingPromoCode] [char](1),
-		[CreateDate] [datetime],
-		[LastUpdateDate] [datetime]
+		[City] [nvarchar](255),
+		[State] [nvarchar](255),
+		[Zip] [float],
+		[ShipDiscount] [int],
+		[OrderCode] [nvarchar](255),
+		[Currency] [nvarchar](255),
+		[promoCode] [nvarchar](255),
+		[IsFreeShippingPromoCode] [bit],
+		[CreateDate] [date],
+		[LastUpdateDate] [date]
 	)
 ELSE
 	TRUNCATE TABLE [Order]

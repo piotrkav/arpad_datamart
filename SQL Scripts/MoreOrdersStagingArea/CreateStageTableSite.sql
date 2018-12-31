@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Site')
 	CREATE TABLE [dbo].[Site]
 	(
-	[SiteID] [char](11),
+	[SiteID] [int],
 	[Name] [nvarchar](50),
 	[IsSite] [bit],
 	[StocksProducts] [bit],
@@ -14,8 +14,8 @@ IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Site')
 	[Portal] [nvarchar](50),
 	[Initials] [nvarchar](11),
 	[Currency] [nvarchar](3),
-	[CreateDate] [datetime],
-	[LastUpdateDate] [datetime]
+	[CreateDate] [date],
+	[LastUpdateDate] [date]
 	)
 ELSE
 	TRUNCATE TABLE Site

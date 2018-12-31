@@ -1,10 +1,10 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Size')
 	CREATE TABLE [dbo].[Size]
 	(
-	[SizeID] [char](11),
+	[SizeID] [int],
 	[Name] [nvarchar](255),
-	[CreateDate] [datetime],
-	[LastUpdateDate] [datetime]
+	[CreateDate] [date],
+	[LastUpdateDate] [date]
 	)
 ELSE
 	TRUNCATE TABLE Size

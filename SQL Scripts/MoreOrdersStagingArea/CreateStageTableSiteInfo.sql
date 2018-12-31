@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'SiteInfo')
 	CREATE TABLE [dbo].[SiteInfo]
 	(
-	[SiteID] [char](11),
+	[SiteID] [int],
 	[Name] [nvarchar](50),
 	[StoreContact] [nvarchar](50),
 	[AdressLine1] [nvarchar](200),
@@ -16,8 +16,8 @@ IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'SiteInfo')
 	[PickupHour] [int],
 	[DailyPickup] [char](1),
 	[Timezone] [nvarchar](50),
-	[CreateDate] [datetime],
-	[LastUpdateDate] [datetime],
+	[CreateDate] [date],
+	[LastUpdateDate] [date],
 	[ServiceCode] [int], 
 	[ServiceDescription] [nvarchar] (255), 
 	[ServiceType] [nchar](1)
