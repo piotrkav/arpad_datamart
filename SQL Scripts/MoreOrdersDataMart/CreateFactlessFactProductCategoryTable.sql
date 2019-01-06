@@ -2,7 +2,6 @@ IF NOT EXISTS (SELECT name FROM sys.tables where name = 'FactlessFactProductCate
 	CREATE TABLE [dbo].[FactlessFactProductCategory](
 	[ProductKey] [int]  NOT NULL,
 	[CategoryKey] [int]  NOT NULL,
-	[IsMainCategory] [char](1)
 	 CONSTRAINT [PK_FactlessFactProductCategory] PRIMARY KEY CLUSTERED 
 	(
 		[ProductKey] ASC,
