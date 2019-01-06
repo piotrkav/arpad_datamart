@@ -8,8 +8,8 @@ IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Product')
 	[BoxID] [int],
 	[Active] [bit],
 	[Exclusive] [bit],
-	[CreateDate] [date],
-	[LastUpdateDate] [date]
+	[CreatedDate] [datetime],
+	[LastUpdateDate] [datetime]
 	)
 ELSE
 	TRUNCATE TABLE Product
