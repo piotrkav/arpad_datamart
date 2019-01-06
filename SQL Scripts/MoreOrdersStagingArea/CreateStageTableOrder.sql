@@ -12,7 +12,7 @@ IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'Order')
 		[PayType] [nvarchar](11),
 		[Address1] [nvarchar](255),
 		[Address2] [nvarchar](255),
-		[CountryID] [char] (11),
+		[CountryID] [int],
 		[City] [nvarchar](255),
 		[State] [nvarchar](255),
 		[Zip] [float],

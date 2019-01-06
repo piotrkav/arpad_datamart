@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT name FROM sys.tables where name = 'FactOrder')
 	CREATE TABLE [dbo].[FactOrder](
 	[CustomerKey] [int] NOT NULL,
-	[CountryKey] [int] NOT NULL,
+	[ShippingKey] [int] NOT NULL,
 	[SiteKey] [int] NOT NULL,
 	[AddressKey] [int] NOT NULL,
 	[PaymentTypeKey] [int] NOT NULL,
@@ -10,17 +10,12 @@ IF NOT EXISTS (SELECT name FROM sys.tables where name = 'FactOrder')
 	[CurrencyKey] [int] NOT NULL,
 	[DateKey] [int] NOT NULL,
 	[Quantity] [tinyint] NOT NULL,
-	[FixedPrice] [tinyint] NOT NULL,
-	[Size] [tinyint] NOT NULL,
-	[RealSize] [tinyint] NOT NULL,
-	[PromotionPercentage] [tinyint] NOT NULL,
-	[VatPercentage] [tinyint] NOT NULL,
 	[ShippingCost] [money] NOT NULL,
 	[LineTotal] [money] NOT NULL
 	 CONSTRAINT [PK_FactOrder] PRIMARY KEY CLUSTERED 
 	(
 		[CustomerKey] ASC,
-		[CountryKey] ASC,
+		[ShippingKey] ASC,
 		[SiteKey] ASC,
 		[AddressKey] ASC,
 		[PaymentTypeKey] ASC,

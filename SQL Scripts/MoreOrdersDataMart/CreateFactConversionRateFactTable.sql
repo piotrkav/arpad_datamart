@@ -3,7 +3,7 @@ IF NOT EXISTS (SELECT name FROM sys.tables where name = 'FactConversionRate')
 	[DateKey] [int] NOT NULL,
 	[SourceCurrencyKey] [int] NOT NULL,
 	[DestinationCurrencyKey] [int] NOT NULL,
-	[ConversionFactor] [tinyint] NOT NULL
+	[ConversionFactor] [float] NOT NULL
 	 CONSTRAINT [PK_FactConversionRate] PRIMARY KEY CLUSTERED 
 	(
 		[DateKey] ASC,
