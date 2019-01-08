@@ -18,5 +18,5 @@ IF NOT EXISTS (SELECT name FROM sys.tables where name = 'DimProduct')
 	[BoxLocation] [nvarchar](255) NULL,
 	[EffectiveDate] [datetime] NOT NULL,
 	[ExpiredDate] [datetime] NULL,
-	[IsCurrent] [nvarchar](3) NOT NULL
+	[IsCurrent] [nvarchar](3) NULL
 		) ON [PRIMARY]

@@ -1,5 +1,5 @@
-IF NOT EXISTS (SELECT name FROM sys.tables where name = 'Shipping')
-	CREATE TABLE [dbo].[Shipping](
+IF NOT EXISTS (SELECT name FROM sys.tables where name = 'DimShipping')
+	CREATE TABLE [dbo].[DimShipping](
 	[ShippingKey] [int] IDENTITY(1,1) NOT NULL,
 	[OrderID] [int] NOT NULL,
 	[CountryName] [nvarchar](50) NULL,
@@ -10,5 +10,5 @@ IF NOT EXISTS (SELECT name FROM sys.tables where name = 'Shipping')
 	[Visible] [char](1) NULL,
 	[EffectiveDate] [datetime] NOT NULL,
 	[ExpiredDate] [datetime] NULL,
-	[IsCurrent] [nvarchar](3) NOT NULL
+	[IsCurrent] [nvarchar](3) NULL
 		) ON [PRIMARY]
